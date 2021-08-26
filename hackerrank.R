@@ -1,14 +1,22 @@
 #HackerRank 10 days Statistic
 
+# This is a function only to use in RStudio, when you resolve the exercise in 
+# Hackerrank you dont need it.
+# Function to read a string from the command line, split into numbers and 
+# return a vector.
+readcommand <- function(arr){
+  arr <- readLines(stdin(), n=1)
+  arr <- strsplit(arr, " ")
+  arr <- as.numeric(unlist(arr))
+}
+
 # Day 1. 1
 #Calculate Mean, median, mode
 
 n <- readLines(stdin(), n=1)
 n <- as.numeric(n)
 
-a <- readLines(stdin(), n=1)
-a <- strsplit(a, " ")
-a <- as.numeric(unlist(a))
+a <- readcommand()
 
 mode <- function(v) {
   uniqv <- unique(v)
@@ -22,13 +30,9 @@ mode(a)
 # Day 1. 2
 # Calculate Weighted mean
 
-X <- readLines(stdin(), n=1)
-X <- strsplit(X, " ")
-X <- as.numeric(unlist(X))
+X <- readcommand()
 
-W <- readLines(stdin(), n=1)
-W <- strsplit(X, " ")
-W <- as.numeric(unlist(X))
+W <- readcommand()
 
 c <- weighted.mean(X, W)
 h <- sprintf(c, fmt = '%#.1f')
@@ -40,9 +44,7 @@ cat(h)
 n <- readLines(stdin(), n=1)
 n <- as.numeric(n)
 
-a <- readLines(stdin(), n=1)
-a <- strsplit(a, " ")
-a <- as.numeric(unlist(a))
+a <- readcommand()
 
 b <- quantile(a)
 
@@ -58,13 +60,9 @@ cat(tq)
 # Interquartile Range
 #
 
-X <- readLines(stdin(), n=1)
-X <- strsplit(X, " ")
-X <- as.numeric(unlist(X))
+X <- readcommand()
 
-W <- readLines(stdin(), n=1)
-W <- strsplit(W, " ")
-W <- as.numeric(unlist(W))
+W <- readcommand()
 
 S <- c()
 
@@ -80,9 +78,7 @@ IQR (S)
 # Standard Deviation
 #
 
-X <- readLines(stdin(), n=1)
-X <- strsplit(X, " ")
-X <- as.numeric(unlist(X))
+X <- readcommand()
 
 error <- c()
 
@@ -90,6 +86,4 @@ for (i in 1:length(X)){
   error <- c(error, (mean(X) - X[i]) ** 2)
 }
 my_stddev <- round(sqrt(sum(error) / length(X)), 1)
-
-
 
