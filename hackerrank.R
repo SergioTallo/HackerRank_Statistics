@@ -124,3 +124,12 @@ probdiffand6 <- probdifferentif6 * prob6
 # One ball is drawn from each of the 3 urns. What is the probability that, 
 # of the 3 balls drawn, 2 are red and 1 is black?
 
+# First urn red = 4/7 black = 3/7
+# Second urn red = 5/9 black = 4/9
+# Third urn red = 1/2 black = 1/2
+# Possiblities:
+# rrb rbr brr
+# rrb = 4/7 * 5/9 * 1/2 = 20/126
+# rbr = 4/7 * 4/9 * 1/2 = 16/126
+# brr = 3/7 * 5/9 * 1/2 = 15/126
+# Total = rrb + rbr + brr = 51/126 = 17/42
