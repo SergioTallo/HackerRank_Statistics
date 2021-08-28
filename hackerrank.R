@@ -231,9 +231,11 @@ p <- (arr[1] / arr[2])
 arr <- readcommand()
 x <- arr[1] - 1
 
+# Geometric distribution p = probability for event to occurs, x = when occurs
 a <- round(dgeom(x, p), 3)
 cat(a)
 
+# Alternative version
 # Probability of 1st item non defective 2/3 +
 # Probability of 2nd item non defective 2/3 +
 # Probability of 3rd item non defective 2/3 +
@@ -261,9 +263,6 @@ prob <- c()
 # Probability sum of defective in the first + non defective in the first + 
 # + defective in the second + non defective in the first + non defective in
 # the second + defective in the third ... etc... til defective in the fifth
-for (i in 1:x){
-  prob <- c(prob, dgeom(i, p))
-}
+prob <- round(sum(prob, dgeom(0:(x-1), p)), 3)
 
-a <- round(sum(prob), 3)
-cat(a)
+cat(prob)
