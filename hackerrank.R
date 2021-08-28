@@ -4,6 +4,7 @@
 # Hackerrank you dont need it.
 # Function to read a string from the command line, split into numbers and 
 # return a vector.
+
 readcommand <- function(arr){
   arr <- readLines(stdin(), n=1)
   arr <- strsplit(arr, " ")
@@ -166,6 +167,8 @@ probdiffand6 <- probdifferentif6 * prob6
 # Write a program to compute the answer using the above parameters. 
 # Then print your result, rounded to a scale of 3 decimal places (i.e.,  format)
 
+# Binomial Distribution: Every random experiment is isolate from the others
+
 # f(x)= (n x) * p**x (1-p)**n-x (dbinom)
 # p = O(p) / (1 + O(p)) = 1.09 / (1 + 1.09) (0p = y)
 # n = 6
@@ -187,6 +190,7 @@ cat (totalprob)
 
 # Day5.2
 # Binomial distribution 2
+
 # A manufacturer of metal pistons finds that, on average, 12%  of the pistons 
 # they manufacture are rejected because they are incorrectly sized. 
 # What is the probability that a batch of 10 pistons will contain:
@@ -214,3 +218,52 @@ end2 <- 1 - (round(sum(total), 3))
 
 cat(end1)
 cat(end2)
+
+# Statistics Day 5.3
+# Geometric distribution 1
+
+# The probability that a machine produces a defective product is 1/3. 
+# What is the probability that the 1st defect occurs the 5th item produced?
+
+arr <- readcommand()
+p <- (arr[1] / arr[2])
+
+arr <- readcommand()
+x <- arr[1] - 1
+
+a <- round(dgeom(x, p), 3)
+cat(a)
+
+# Probability of 1st item non defective 2/3 +
+# Probability of 2nd item non defective 2/3 +
+# Probability of 3rd item non defective 2/3 +
+# Probability of 4th item non defective 2/3 +
+# Probability of 5th item non defective 1/3
+
+a <- round(2/3 * 2/3 * 2/3 * 2/3 * 1/3, 3)
+cat(a)
+
+# Statistics Day 5.3
+# Geometric distribution 2
+
+# The probability that a machine produces a defective product is 1/3. 
+# What is the probability that the 1st defect is found during the 
+# first 5 inspections?
+
+arr <- readcommand()
+p <- (arr[1] / arr[2])
+
+arr <- readcommand()
+x <- arr[1]
+
+prob <- c()
+
+# Probability sum of defective in the first + non defective in the first + 
+# + defective in the second + non defective in the first + non defective in
+# the second + defective in the third ... etc... til defective in the fifth
+for (i in 1:x){
+  prob <- c(prob, dgeom(i, p))
+}
+
+a <- round(sum(prob), 3)
+cat(a)
