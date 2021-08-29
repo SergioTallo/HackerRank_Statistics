@@ -266,3 +266,50 @@ prob <- c()
 prob <- round(sum(prob, dgeom(0:(x-1), p)), 3)
 
 cat(prob)
+
+
+# Statistics Day 6.1
+# Poisson Distribution I
+
+# A random variable, X , follows Poisson distribution with mean of 2.5. 
+# Find the probability with which the random variable X is equal to 5.
+
+
+arr <- readcommand()
+lambda <- (arr[1])
+
+arr <- readcommand()
+k <- arr[1]
+
+p <- round(dpois(k, lambda), 3)
+cat (p)
+
+# Statistics Day 6.2
+# Poisson Distribution II
+
+# The manager of a industrial plant is planning to buy a machine 
+# of either type A or type B. For each day’s operation:
+
+# The number of repairs, X, that machine A needs is a Poisson random variable 
+# with mean 0.88. The daily cost of operating A is CA:160+40X**2.
+# The number of repairs, Y, that machine B needs is a Poisson random variable 
+# with mean 1.55. The daily cost of operating B is CB:128+40Y**2.
+
+# Assume that the repairs take a negligible amount of time and the machines 
+# are maintained nightly to ensure that they operate like new at the start 
+# of each day. 
+
+#Find and print the expected daily cost for each machine.
+
+# X**2 = lambda + lambda **2 => X=sqrt(lambda + lambda **2)
+
+arr <- readcommand()
+lambdaA <- (arr[1])
+lambdaB <- (arr[2])
+
+costA <- round(160 + (40*((sqrt(lambdaA + (lambdaA**2)))**2)),3)
+costB <- round(128 + (40*((sqrt(lambdaB + (lambdaB**2)))**2)),3)
+cat(costA)
+cat("\n")
+cat(costB)
+
