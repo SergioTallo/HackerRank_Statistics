@@ -313,3 +313,71 @@ cat(costA)
 cat("\n")
 cat(costB)
 
+# Statistics Day 6.3
+# Normal distribution I
+
+# In a certain plant, the time taken to assemble a car is a random variable, X , 
+# having a normal distribution with a mean of 20 hours and a standard deviation 
+# of 2 hours. 
+# What is the probability that a car can be assembled at this plant in:
+# Less than 19.5 hours?
+# Between 20 and 22 hours?
+
+arr <- readcommand()
+mean <- arr[1]
+stdev <- arr[2]
+
+arr <- readcommand()
+x <- arr[1]
+
+# Probability less or equal than a point (normal distribution)
+prob <- round(pnorm(x, mean, stdev), 3)
+
+arr <- readcommand()
+x <- arr[1]
+y <- arr[2]
+
+# Probability between two points (normal distribution)
+prob2 <- round((pnorm(y, mean, stdev) - pnorm(x, mean, stdev)), 3)
+
+cat(prob)
+cat("\n")
+cat(prob2)
+
+# Statistics Day 6.4
+# Normal distribution II
+
+# The final grades for a Physics exam taken by a large group of students 
+# have a mean of 70 and a standard deviation of 10. 
+# If we can approximate the distribution of these grades by a normal 
+# distribution, what percentage of the students:
+# Scored higher than 80 (i.e., have a grade > 80)?
+# Passed the test (i.e., have a grade => 60)?
+# Failed the test (i.e., have a grade < 60)?
+# Find and print the answer to each question on a new line, 
+# rounded to a scale of 2 decimal places.
+
+arr <- readcommand()
+mean <- arr[1]
+stdev <- arr[2]
+
+arr <- readcommand()
+x <- arr[1]
+
+# Probability more than a point (normal distribution)
+prob <- round(((1 - pnorm(x, mean, stdev))*100), 2)
+
+arr <- readcommand()
+x <- arr[1]
+
+# Probability more than a point (normal distribution)
+prob2 <- round(((1 - pnorm(x, mean, stdev))*100), 2)
+
+# Probability less or equal than a point (normal distribution)
+prob3 <- round((pnorm(x, mean, stdev)*100), 2)
+
+cat(prob)
+cat("\n")
+cat(prob2)
+cat("\n")
+cat(prob3)
