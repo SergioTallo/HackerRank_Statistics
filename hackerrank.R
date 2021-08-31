@@ -443,3 +443,78 @@ sigma <- stddev * sqrt(n)
 prob <- round(pnorm(x, mu, sigma), 4)
 cat(prob)
 
+# Statistics Day 7.3
+# The Central Limit Theorem III
+
+# You have a sample of 100 values from a population with mean 500 and with 
+# standard deviation 80. 
+# Compute the interval that covers the middle 95% of the distribution of 
+# the sample mean; 
+# in other words, compute A and B such that P(A<x<B). Use the value of z = 1.96. 
+# Note that z is the z-score.
+
+arr <- readcommand()
+n <- arr[1]
+
+arr <- readcommand()
+mean <- arr[1]
+
+arr <- readcommand()
+stddev <- arr[1]
+
+arr <- readcommand()
+percentage <- arr[1]
+
+arr <- readcommand()
+z <- arr[1]
+
+stddev <- stddev / sqrt(n)
+upperbound <- ((1 - percentage) / 2) + percentage
+lowerbound <- (1 - percentage) / 2
+
+A <- round(qnorm(lowerbound, mean, stddev), 2)
+B <- round(qnorm(upperbound, mean, stddev), 2)
+
+cat(A)
+cat("\n")
+cat(B)
+
+# Statistics Day 8.1
+# Pearson Correlation coeficient
+
+# Given two n-element data sets, X and , Y calculate the value of the 
+# Pearson correlation coefficient.
+
+arr <- readcommand()
+n <- arr[1]
+
+arr <- readcommand()
+X <- arr
+
+arr <- readcommand()
+Y <- arr
+
+corrcoef <- round(cor(X, Y, method = 'pearson'), 3)
+cat(corrcoef)
+
+# Statistics 8.2
+# Spearman's Rank Correlation Coefficient
+
+# Given two n-element data sets, X and Y, calculate the value of 
+# Spearman's rank correlation coefficient.
+
+arr <- readcommand()
+n <- arr[1]
+
+arr <- readcommand()
+X <- arr
+
+arr <- readcommand()
+Y <- arr
+
+corrcoef <- round(cor(X, Y, method = 'spearman'), 3)
+cat(corrcoef)
+
+
+data <- read.table("stdin",header=F, skip=1)
+dat <- t(data)
