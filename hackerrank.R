@@ -518,3 +518,54 @@ cat(corrcoef)
 
 data <- read.table("stdin",header=F, skip=1)
 dat <- t(data)
+
+
+# Statistics 9.1
+# Least square regression line
+
+# A group of five students enrolls in Statistics immediately after 
+# taking a Math aptitude test. Each student's Math aptitude test 
+# score, x , and Statistics course grade, y , can be expressed as the 
+# following list of (x,y) points:
+# 1. (95, 85)
+# 2. (85, 95)
+# 3. (80, 70)
+# 4. (70, 65)
+# 5. (60, 70)
+# If a student scored an 80 on the Math aptitude test, what grade would we 
+# expect them to achieve in Statistics? Determine the equation of the 
+# best-fit line using the least squares method, then compute and print the 
+# value of  y when x = 80.
+
+arr <- readcommand()
+X <- c(arr[1])
+Y <- c(arr[2])
+
+arr <- readcommand()
+X <- c(X, arr[1])
+Y <- c(Y, arr[2])
+
+arr <- readcommand()
+X <- c(X, arr[1])
+Y <- c(Y, arr[2])
+
+arr <- readcommand()
+X <- c(X, arr[1])
+Y <- c(Y, arr[2])
+
+arr <- readcommand()
+X <- c(X, arr[1])
+Y <- c(Y, arr[2])
+
+model = lm(Y~X)
+regressionline = (model$coefficients[2]*80) + model$coefficients[1]
+cat(round(ans,3))
+
+# Statistics 9.2
+# Pearson Correlation Coefficient II
+
+# The regression line of y on x is 3x + 4y + 8 = 0, and the regression line 
+# of y on x is 4x + 3y + 7 = 0. What is the value of the Pearson correlation coefficient?
+
+# -3/4
+
