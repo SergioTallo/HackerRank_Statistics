@@ -53,4 +53,46 @@ print(probalt)
 
 # 3
 # Someone would like to send Christmas Cards per postal service to 10 friends.
-# Out of this 10 friends, 2 live in Vienna,
+# Out of this 10 friends, 2 live in Vienna. To send the Christmas card, stamps are required
+# Unfortunately, the person has only 4 stamps and therefore decides to select 4 of the 10
+# friends randomly and to send only these friends a Christmas card. The random variable X
+# is the number of friends in Vienna among the 4 selected friends which get a Christmas card
+# a) State the probability distribution function of X
+# b) Calculate the expected value and variance for X
+
+# Hypergeometric distribution
+# f(x) = (binomcoefficient(k,x) * binomcoefficient((n - m),(k - x))) / binomcoefficient(n,k)
+# k = 4
+# m = 2
+# n = 10
+# p = M/N = 2/10
+
+#a)
+
+k <- 4
+m <- 2
+n <- 10
+
+X <- c()
+X <- c(X, dhyper(0:2, m, (n - m), k))
+
+print(X)
+
+# Alternative
+
+Y <- c()
+Y <- c(Y, (choose(m,0:2) * choose((n - m),(k - 0:2))) / choose(n,k))
+
+
+# b)
+
+# k = Size of the sample
+# p = probability of sample
+
+# E[X] = μ = k * p
+# Var(X) = k * p * (1 - p) * (m+n-k)/(m+n-1)
+
+p <- m/n
+
+eX <- k * p
+varX <- k * p * (1 - p) * (n-k)/(n-1)
