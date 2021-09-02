@@ -558,6 +558,7 @@ X <- c(X, arr[1])
 Y <- c(Y, arr[2])
 
 model = lm(Y~X)
+print(model)
 regressionline = (model$coefficients[2]*80) + model$coefficients[1]
 cat(round(ans,3))
 
@@ -568,4 +569,59 @@ cat(round(ans,3))
 # of y on x is 4x + 3y + 7 = 0. What is the value of the Pearson correlation coefficient?
 
 # -3/4
+#
 
+
+
+# Statistics 10.1
+# Multiple linear Regression
+
+# Andrea has a simple equation:
+# Y = a + b1*f1 + b2*f2 + ... + bm*fm
+# for (m+1) real constants (a, f1, f2, ... , fm). We can say that the 
+# value of Y depends on m features. Andrea studies this equation for  
+# n different feature sets (f1, f2, ... , fm) and records each respective 
+# value of Y. If she has q new feature sets, can you help Andrea find 
+# the value of Y for each of the sets?
+# Note: You are not expected to account for bias and variance trade-offs.
+
+
+arr <- readcommand()
+m <- arr[1]
+n <- arr[2]
+
+F1 <- c()
+F2 <- c()
+Y <- c()
+
+for (i in 1:n){
+  arr <- readcommand()
+  F1 <- c(F1, arr[1])
+  F2 <- c(F2, arr[2])
+  Y <- c(Y, arr[3])
+}
+
+arr <- readcommand()
+q <- arr[1]
+
+Fq <- c()
+F2q <- c()
+for (i in 1:q){
+  arr <- readcommand()
+  Fq <- c(Fq, arr[1])
+  F2q <- c(F2q, arr[2])
+}
+
+m <- lm(Y ~ F1 + F2)
+show(m)
+
+regressionset <- c()
+for (i in 1:q){
+  regressionset <- c(regressionset, round(m$coefficients[1] + (m$coefficients[2] * Fq[i]) + (m$coefficients[3] * F2q[i]) , 2))
+
+}
+
+for (i in (1:length(regressionset))){
+  cat(regressionset[i])
+  cat("\n")
+}
