@@ -5,29 +5,36 @@
 # a) Calculate P(3≤X≤9), P(X≥8) and P(|X-4| ≤ 3)
 # b) Calculate the expected value and the variance of this random variable
 
+cat("Excercise 1")
+
 # a)
 # P(3≤X≤9) => Is the integral between 3 and 9 of f(x)
 
 f <- function(x)((1 - (x/10))*(1/5))
 prob <- integrate(f, lower = 3, upper = 9)
-print(prob$value)
+cat("a)")
+cat("P(3≤X≤9): ", round(prob$value * 100, 2), "%")
 
 # P(X≥8) => Is the integral between 8 and 10 of f(x)
 
 prob <- integrate(f, lower = 8, upper = 10)
-print(prob$value)
+cat("P(X≥8): ", round(prob$value * 100, 2), "%")
 
 # P(|X-4| ≤ 3) => if (1≤x≤7) => |X - 4| ≤ 3
 
 prob <- integrate(f, lower = 1, upper = 7)
-print(prob$value)
+cat("P(|X-4| ≤ 3): ", round(prob$value * 100, 2), "%")
+cat("\n")
+
 
 # b)
 # µ = E(x) ∫x * f(x) between -∞ and ∞
 
+cat("b)")
+
 f <- function(x)(x * ((1 - (x/10))*(1/5)))
 E <- integrate(f, lower = 0, upper = 10)
-print(E$value)
+cat("E(x): ", E$value)
 
 # Var(X) = E(x**2) - (E(X))**2
 
@@ -36,7 +43,7 @@ E <- integrate(f, lower = 0, upper = 10)
 E2 <- integrate(f2, lower = 0, upper = 10)
 
 var <- E2$value - (E$value ** 2)
-print(var)
+cat("var(x): ", var)
 
 
 # 2
@@ -48,7 +55,11 @@ print(var)
 # b) Calculate a 95% confidence interval for the true mean magnesium content, if the true variance
 # is not known and has to be estimated on the given sample data.
 
+cat("Excercise 2")
+
 # a)
+
+cat("a)")
 
 X <- c(23.2, 23.2, 24.1, 25.1, 23.3, 22.3)
 µ <- mean(X)
@@ -65,10 +76,11 @@ d <- (z * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+cat("P(95%): (",downlimit, ",", uplimit, ")")
 
 # b) 
+
+cat("b)")
 
 var <- var(X)
 stddev <- sqrt(var)
@@ -87,8 +99,7 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+cat("P(95%): (",downlimit, ",", uplimit, ")")
 
 
 # 3
@@ -102,7 +113,11 @@ print(uplimit)
 #   of the logs, which is 130mm wide and still has the same reliability of 95%.
 #   Calculate the approximately needed sample size for this confidence interval.
 
+cat("Excercise 3")
+
 # a)
+
+cat("a)")
 
 X <- c(1110, 1150, 1200, 1430, 1100, 950, 1700, 1470)
 µ <- mean(X)
@@ -118,16 +133,17 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+cat("P(95%): (",downlimit, ",", uplimit, ")")
 
 # b)
+
+cat("b)")
 
 u <- qnorm(1 - (alpha/2))
 L <- 130
 nx <- ((2*u)*(stddev/L))**2
 nx <- ceiling(nx)
-print(nx)
+cat("Sample size:", nx)
 
 
 # 4
@@ -139,25 +155,31 @@ print(nx)
 # b) Calculate an unbiased and consistent estimator for the true variance based on the given sample data.
 # c) Calculate a 90% confidence interval for the true mean weight of the biscuits based on the given sample data.
 
+cat("Excercise 4")
+
 X <- c(46, 46, 49, 46, 48, 51, 49, 51, 53, 49)
 µ <- 50
 n <- 10
 
 # a)
+cat("a)")
 
 meanest <- mean(X)
-print(meanest)
+cat("Estimated mean:", meanest)
 
 # b)
+cat("b)")
 
 varianceest <- var(X)
-print(varianceest)
+cat("Estimated variance:", varianceest)
 
 # Alternative
 v <- (sum(((X[1:n]) - meanest)**2)) * (1 / (n-1))
-print(v)
+cat("Alternative method:")
+cat("Estimated variance:", v)
 
 # c)
+cat("c)")
 
 µ <- meanest
 stddev <- sqrt(varianceest)
@@ -170,8 +192,7 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 
 # 5
@@ -182,11 +203,15 @@ print(uplimit)
 #   between 980g and 1040g?
 # b) Calculate the 25% quantile of the random variable birth weight.
 
+cat("Excercise 5")
+
 µ <- 950
 stddev <- 50
 
 # a)
 # P(980 ≤ x ≤ 1040) = P(x ≤ 1040) - P(x ≤ 980)
+
+cat("a)")
 
 x1 <- 1040
 x2 <- 980
@@ -194,13 +219,17 @@ x2 <- 980
 prob1 <- pnorm(x1, µ, stddev)
 prob2 <- pnorm(x2, µ, stddev)
 prob <- prob1 - prob2
-print(round(prob * 100, 2))
+
+cat("P(", x2, "≤ x ≤", x1, "):", round(prob * 100, 2), "%")
+
 
 # b)
 
+cat("b)")
+
 percentage <- 0.25
 x <- qnorm(percentage, µ, stddev)
-print(round(x, 2))
+cat(percentage * 100, "% quantile:", round(x, 2))
 
 
 # 6
@@ -208,16 +237,20 @@ print(round(x, 2))
 # a) Calculate the expected value and the variance of this random variable
 # b) Above which value are 60% of the distribution mass of this random variable
 
+cat("Excercise 6")
+
 # a)
+
+cat("a)")
 
 f <- function(x)(x*(2*(x-2)))
 ev <- integrate(f, lower = 2, upper = 3)
-print(ev$value)
+cat("E(x): ", ev$value)
 
 f2 <- function(x)((x**2)*(2*(x-2)))
 E2 <- integrate(f2, lower = 2, upper = 3)
 var <- E2$value - (ev$value ** 2)
-print(var)
+cat("var(x): ", var)
 
 # b)
 
@@ -225,6 +258,8 @@ print(var)
 # (x ** 2) - 4 * x between x and 3 = 0.6
 # -3 - x ** 2 + 4 * x - 0.6 = 0
 #  - x ** 2 + 4 * x - 3.6 = 0
+
+cat("b)")
 
 calcquad <- function(a, b, c){
   x <- c()
@@ -236,10 +271,10 @@ calcquad <- function(a, b, c){
 solution <- calcquad(-1, 4, - 3.6)
 
 if (solution[1] <= 3 & solution[1] >= 2){
-  print(solution[1])
+  cat("P(x ≤", solution[1], ") = 60%")
 }
 if (solution[2] <= 3 & solution[2] >= 2){
-  print(solution[2])
+  cat("P(x ≤", solution[2], ") = 60%")
 }
 
 
@@ -254,6 +289,8 @@ if (solution[2] <= 3 & solution[2] >= 2){
 # b) Which confidence level has to be chosen, so that with a sample of 40 bottles a confidence
 #   interval with a length of at most 1 millimeter is achieved? An approximate solution is sufficient
 
+cat("Excercise 7")
+
 X <- c(760, 756, 748, 745, 745, 755, 748, 760, 755,770)
 µ <- 750
 variance <- var(X)
@@ -261,6 +298,8 @@ stddev <- sqrt(variance)
 n <- length(X)
 
 # a)
+
+cat("a)")
 
 percentage <- 0.99
 alpha <- 1 - percentage
@@ -270,17 +309,20 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
+
 
 # b)
 
-
+cat("b)")
 
 # 8
 # We know that the distribution of the weight of a certain bat species follows a normal
 # distribution with mean µ = 120grams and a variance of 400grams**2
 # Calculate the limits of an interval, which covers the central 90% of the distribution.
+
+cat("Excercise 8")
 
 µ <-  120
 variance <- 400
@@ -296,14 +338,17 @@ d <- z * stddev
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
+
 
 
 # 9
 # Someone has estimated the mean and the variance of the weight of another bat species based
 # on a sample of 10 bats. The sample mean was 120 grams and the sample variance was 400 grams^2.
 # Calculate a 90% confidence interval for the true unknown mean.
+
+cat("Excercise 9")
 
 µest <-120
 varianceest <- 400
@@ -318,8 +363,8 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µest + d 
 downlimit <- µest - d
-print(downlimit)
-print(uplimit)
+
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 
 # 10
@@ -331,10 +376,14 @@ print(uplimit)
 # c) Assume nor only 6 people were asked, the mean and variance of this sample are still remaining
 #   the same. Construct a 95% confidence interval for the true mean based on this sample.
 
+cat("Excercise 10")
+
 µ <- 105
 stddev <- 8
 
 # a)
+
+cat("a)")
 
 percentage <- 0.95
 n <- 41
@@ -345,10 +394,12 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 # b)
+
+cat("b)")
 
 n <- 600
 
@@ -357,10 +408,12 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
+
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 # c)
+
+cat("c)")
 
 n <- 6
 
@@ -369,14 +422,15 @@ d <- (t * stddev) / sqrt(n)
 
 uplimit <- µ + d 
 downlimit <- µ - d
-print(downlimit)
-print(uplimit)
 
+cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 # 11
 # A new tax law is expected to benefit "middle income" families, those with incomes between
 # 20,000$ and 30,000$. If family income follows a normal distribution with µ = 25,000 and 
 # stddev = 10,000$. What percentage of the population will benefit from this law?
+
+cat("Excercise 11")
 
 µ <-  25000
 stddev <- 10000
@@ -387,11 +441,14 @@ x2 <- 30000
 prob1 <- pnorm(x1, µ, stddev)
 prob2 <- pnorm(x2, µ, stddev)
 prob <- prob2 - prob1
-print(round(prob * 100, 2))
+
+cat("P(", x1, "≤ x ≤", x2, "):", round(prob * 100, 2), "%")
 
 
 # 12
 # A political candidate finds that in a random sample of 300 constituents, 34% support her party.
 # Calculate the 95% confidence interval for the support she in fact has.
+
+cat("Excercise 12")
 
 n <- 300
