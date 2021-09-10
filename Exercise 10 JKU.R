@@ -168,7 +168,7 @@ prob <- round(pnorm(x, mean, stddev), 4)
 # Alternative
 
 z <- ((x - mean) / stddev)
-prob <-pnorm(z)
+prob <- pnorm(z)
 
 
 # b)

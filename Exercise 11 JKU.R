@@ -254,6 +254,8 @@ cat("var(x): ", var)
 
 # b)
 
+# above 0.4
+
 # ∫2*(x-2) between x and 3 = 0.6
 # (x ** 2) - 4 * x between x and 3 = 0.6
 # -3 - x ** 2 + 4 * x - 0.6 = 0
@@ -291,8 +293,8 @@ if (solution[2] <= 3 & solution[2] >= 2){
 
 cat("Excercise 7")
 
-X <- c(760, 756, 748, 745, 745, 755, 748, 760, 755,770)
-µ <- 750
+X <- c(760, 756, 748, 745, 745, 755, 748, 760, 755, 770)
+µ <- mean(X)
 variance <- var(X)
 stddev <- sqrt(variance)
 n <- length(X)
@@ -314,6 +316,19 @@ cat("P(", percentage*100, "%): (",downlimit, ",", uplimit, ")")
 
 
 # b)
+
+# Watch another time
+
+n <- 40
+L <- 1
+u <- ((sqrt(n) * L)  / (2 * stddev))
+a <- qnorm(0.4) * stddev / sqrt(n)
+print(a)
+print(u)
+
+cat("Confidence Level:", prob, "%")
+
+# Look how to find the third column 0.3108 confidence Type 1 error alpha 0.6892
 
 cat("b)")
 
@@ -452,3 +467,152 @@ cat("P(", x1, "≤ x ≤", x2, "):", round(prob * 100, 2), "%")
 cat("Excercise 12")
 
 n <- 300
+p <- 0.34
+percentage <- 0.95
+alpha <- 1 - percentage
+
+assumption <- n * p * (1 -p)
+
+asumption_test <- function(assumption){
+  if (assumption >= 9){
+    print("Assumption met")
+  } else {
+    print("Assumption didn't met")
+  }
+}
+
+asumption_test(assumption)
+
+u <- qnorm((1 - (alpha/2)))
+
+π <- c()
+π <- c(π, p - (u * sqrt((p * (1 - p)) / n)))
+π <- c(π, p + (u * sqrt((p * (1 - p)) / n)))
+
+cat("Confindence interval: (", π[1], ",", π[2], ")")
+cat("Confindence interval: (", round(π[1] * 100, 2), "% ,", round(π[2] * 100, 2), "% )")
+
+margin_of_error <- round(((π[2] - π[1]) / 2) * 100, 2)
+
+cat("Margin of error:", margin_of_error, "%")
+
+# Alternative
+
+cat("Alternative Method using binom library")
+
+library(binom)
+
+k = p * n
+
+π <- binom.confint(k, n)
+
+cat("Confindence interval: (", round(π$lower[2] * 100, 2), "% ,", round(π$upper[2] * 100, 2), "% )")
+
+
+# 13
+# A sample of 500 people finds that 225 have blood type O.
+# a) Calculate an asymptotic 95% confidence interval for the true percentage of people with blood
+#   type O based on the above sample data
+# b) Calculate again an asymptotic 95% confidence interval for the true percentage of people with
+#   blood type O but now the sample size is only 20 people in total and among thede 20 people 9 have
+#   the blood type O
+# c) What happens with the confidence interval?
+
+cat("Excercise 13")
+
+# a)
+
+cat("a)")
+
+n <- 500
+p <- 225 / n
+percentage <- 0.95
+alpha <- 1 - percentage
+
+assumption <- n * p * (1 -p)
+
+asumption_test <- function(assumption){
+  if (assumption >= 9){
+    print("Assumption met")
+  } else {
+    print("Assumption didn't met")
+  }
+}
+
+asumption_test(assumption)
+
+u <- qnorm((1 - (alpha/2)))
+
+π <- c()
+π <- c(π, p - (u * sqrt((p * (1 - p)) / n)))
+π <- c(π, p + (u * sqrt((p * (1 - p)) / n)))
+
+cat("Confindence interval: (", π[1], ",", π[2], ")")
+cat("Confindence interval: (", round(π[1] * 100, 2), "% ,", round(π[2] * 100, 2), "% )")
+
+margin_of_error <- round(((π[2] - π[1]) / 2) * 100, 2)
+
+cat("Margin of error:", margin_of_error, "%")
+
+# b)
+
+cat("b)")
+
+n <- 20
+p <- 9 / n
+percentage <- 0.95
+alpha <- 1 - percentage
+
+assumption <- n * p * (1 -p)
+
+asumption_test <- function(assumption){
+  if (assumption >= 9){
+    print("Assumption met")
+  } else {
+    print("Assumption didn't met")
+  }
+}
+
+asumption_test(assumption)
+
+u <- qnorm((1 - (alpha/2)))
+
+π <- c()
+π <- c(π, p - (u * sqrt((p * (1 - p)) / n)))
+π <- c(π, p + (u * sqrt((p * (1 - p)) / n)))
+
+cat("Confindence interval: (", π[1], ",", π[2], ")")
+cat("Confindence interval: (", round(π[1] * 100, 2), "% ,", round(π[2] * 100, 2), "% )")
+
+margin_of_error <- round(((π[2] - π[1]) / 2) * 100, 2)
+
+cat("Margin of error:", margin_of_error, "%")
+
+# c)
+
+cat("c)")
+
+cat("The margin of error of the confidence interval grows when n gets lower, in this case (b) it is too big")
+
+
+# 14
+# Someone is planning an evaluation of a semester-long alcohol awareness campaign at his college.
+# Previous evaluation indicate that about 25% of the students surveyed will respond "Yes" to the
+# question "Did the campaign alter your behavior toward alcohol consumption?"
+# How large a sample of students should he take, if he wants the margin of error for 95% confidence
+# to be about 1%-point?
+
+cat("Excercise 13")
+
+π1 <- 0.24
+π2 <- 0.26
+
+p <- 0.25
+percentage <- 0.95
+alpha <- 1 - percentage
+u <- qnorm((1 - (alpha/2)))
+
+n <- (p * (1 - p)) / (( π2 - p / u ) ** 2)
+
+cat("The sample should be", ceiling(n))
+
