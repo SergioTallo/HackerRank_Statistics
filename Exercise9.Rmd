@@ -1,0 +1,55 @@
+---
+title: "Exercise Sheet 9"
+output: html_exercise_9
+---
+
+1.
+A household is called prosperous if its income exceeds $100,000. A household is called educated if the householder complete college. Select an American household at random, and let A be the event that the selected household is properous and B the event that it is educated. According to a population survey it holds that P(A) is 0.138 and P(B) is 0.261.
+Furthermore, the probability that a household is both prosperous and educated is 0.082.
+
+a) What is the probability that the household selected is prosperous or educated?
+b) What is the probability that a household is prosperous, given that is educated?
+
+```{r}
+cat("a)")
+cat("\n")
+
+PA <- 0.138
+PB <- 0.261
+PAandB <- 0.082
+
+PAodB <- PA + PB - PAandB
+
+cat("Probability prosperous or educated:", round(PAodB * 100, 2), "%")
+
+cat("\n\n")
+cat("b)")
+cat("\n")
+
+# P(A|B) = P(AodB) / P(B)
+
+PAnachB <- PAandB / PB
+
+cat("Probability prosperous given educated:", round(PAnachB * 100, 2), "%")
+
+
+```
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+
+```
+
