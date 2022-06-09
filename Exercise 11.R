@@ -600,7 +600,7 @@ cat("The margin of error of the confidence interval grows when n gets lower, in 
 # Previous evaluation indicate that about 25% of the students surveyed will respond "Yes" to the
 # question "Did the campaign alter your behavior toward alcohol consumption?"
 # How large a sample of students should he take, if he wants the margin of error for 95% confidence
-# to be about 1%-point?
+# to be about 1%-point?.
 
 cat("Excercise 13")
 
