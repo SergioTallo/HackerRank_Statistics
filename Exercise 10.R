@@ -25,7 +25,7 @@ print(palt)
 # A hunter hits his target with only 65% probability. How likely does he score
 # more than three hits in exactly ten shots.
 
-# Binomial distribution
+# Binomial distribution.
 # p(x) = binomcoefficient(n,x)*(p**x)*((1-p)**(n-x))
 # n = 10
 # p = 0.65
